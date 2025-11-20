@@ -1,0 +1,5 @@
+{
+  "name": "EcoSentinel",
+  "description": "Advanced environmental monitoring for Shelly Plus H&T with AI diagnostics and M2M automation.",
+  "requestFramePermissions": []
+}
