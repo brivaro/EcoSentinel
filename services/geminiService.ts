@@ -4,7 +4,7 @@ const MODEL_NAME = "gemini-2.5-flash";
 
 export const getAiResponse = async (userPrompt: string, contextData: any): Promise<string> => {
   try {
-    const apiKey = process.env.API_KEY;
+    const apiKey = process.env.VITE_GEMINI_API_KEY;
     
     if (!apiKey) {
       console.warn("API Key is missing.");
