@@ -4,11 +4,10 @@ const MODEL_NAME = "gemini-2.5-flash";
 
 export const getAiResponse = async (userPrompt: string, contextData: any): Promise<string> => {
   try {
-    // Safe access to process.env for browser environments
-    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+    const apiKey = process.env.API_KEY;
     
     if (!apiKey) {
-      console.warn("API Key is missing or process.env is unavailable.");
+      console.warn("API Key is missing.");
       return "Error: API Key configuration issue. AI features are disabled.";
     }
 
@@ -25,9 +24,7 @@ export const getAiResponse = async (userPrompt: string, contextData: any): Promi
 
     const response = await ai.models.generateContent({
       model: MODEL_NAME,
-      contents: [
-        { role: 'user', parts: [{ text: systemPrompt + "\n\nUser Query: " + userPrompt }] }
-      ]
+      contents: systemPrompt + "\n\nUser Query: " + userPrompt,
     });
 
     return response.text || "I couldn't generate a response.";
